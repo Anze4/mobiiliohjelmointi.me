@@ -2,39 +2,39 @@ import { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
-  const [num1, setNum1] = useState("");
-  const [num2, setNum2] = useState("");
-  const [result, setResult] = useState(0);
+  const [luku1, setLuku1] = useState("");
+  const [luku2, setLuku2] = useState("");
+  const [tulos, setTulos] = useState(0);
 
-  const add = () => {
-    setResult(Number(num1) + Number(num2));
+  const laskeYhteen = () => {
+    setTulos(Number(luku1) + Number(luku2));
   };
 
-  const subtract = () => {
-    setResult(Number(num1) - Number(num2));
+  const laskeErotus = () => {
+    setTulos(Number(luku1) - Number(luku2));
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.result}>Result: {result}</Text>
+      <Text style={styles.tulos}>Tulos: {tulos}</Text>
 
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        value={num1}
-        onChangeText={setNum1}
+        value={luku1}
+        onChangeText={setLuku1}
       />
 
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        value={num2}
-        onChangeText={setNum2}
+        value={luku2}
+        onChangeText={setLuku2}
       />
 
       <View style={styles.buttons}>
-        <Button title="+" onPress={add} />
-        <Button title="-" onPress={subtract} />
+        <Button title="+" onPress={laskeYhteen} />
+        <Button title="-" onPress={laskeErotus} />
       </View>
     </View>
   );
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  result: {
+  tulos: {
     fontSize: 24,
     marginBottom: 20,
   },
