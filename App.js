@@ -1,11 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
+  const [num1, setNum1] = useState("");
+  const [num2, setNum2] = useState("");
+  const [result, setResult] = useState(0);
+
+  const add = () => {
+    setResult(Number(num1) + Number(num2));
+  };
+
+  const subtract = () => {
+    setResult(Number(num1) - Number(num2));
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.result}>Result: {result}</Text>
+
+      <TextInput
+        style={styles.input}
+        keyboardType="numeric"
+        value={num1}
+        onChangeText={setNum1}
+      />
+
+      <TextInput
+        style={styles.input}
+        keyboardType="numeric"
+        value={num2}
+        onChangeText={setNum2}
+      />
+
+      <View style={styles.buttons}>
+        <Button title="+" onPress={add} />
+        <Button title="-" onPress={subtract} />
+      </View>
     </View>
   );
 }
@@ -13,8 +43,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  result: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: 200,
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 8,
+  },
+  buttons: {
+    flexDirection: "row",
+    gap: 10,
   },
 });
+
