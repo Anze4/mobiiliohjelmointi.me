@@ -2,41 +2,41 @@ import { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
-  const [guess, setGuess] = useState("");
-  const [message, setMessage] = useState("Guess a number between 1-100");
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(
+  const [arvaus, setArvaus] = useState("");
+  const [viesti, setViesti] = useState("Arvaa numero väliltä 1–100");
+  const [arvaustenMaara, setArvaustenMaara] = useState(0);
+  const [satunnaisluku, setSatunnaisluku] = useState(
     Math.floor(Math.random() * 100) + 1
   );
 
-  const makeGuess = () => {
-    const userGuess = Number(guess);
-    const newCount = count + 1;
-    setCount(newCount);
+  const teeArvaus = () => {
+    const kayttajanArvaus = Number(arvaus);
+    const uusiMaara = arvaustenMaara + 1;
+    setArvaustenMaara(uusiMaara);
 
-    if (userGuess < number) {
-      setMessage(`Your guess ${userGuess} is too low`);
-    } else if (userGuess > number) {
-      setMessage(`Your guess ${userGuess} is too high`);
+    if (kayttajanArvaus < satunnaisluku) {
+      setViesti(`Arvauksesi ${kayttajanArvaus} on liian pieni`);
+    } else if (kayttajanArvaus > satunnaisluku) {
+      setViesti(`Arvauksesi ${kayttajanArvaus} on liian suuri`);
     } else {
-      setMessage(`You guessed the number in ${newCount} guesses`);
+      setViesti(`Arvasit oikein ${uusiMaara} arvauksella`);
     }
 
-    setGuess("");
+    setArvaus("");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{message}</Text>
+      <Text style={styles.text}>{viesti}</Text>
 
       <TextInput
         style={styles.input}
         keyboardType="numeric"
-        value={guess}
-        onChangeText={setGuess}
+        value={arvaus}
+        onChangeText={setArvaus}
       />
 
-      <Button title="MAKE GUESS" onPress={makeGuess} />
+      <Button title="TEE ARVAUS" onPress={teeArvaus} />
     </View>
   );
 }
@@ -59,3 +59,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
