@@ -1,18 +1,27 @@
 import { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, FlatList } from "react-native";
+
 
 export default function App() {
   const [luku1, setLuku1] = useState("");
   const [luku2, setLuku2] = useState("");
   const [tulos, setTulos] = useState(0);
 
+  const [historia, setHistoria] = useState([]);
+
   const laskeYhteen = () => {
-    setTulos(Number(luku1) + Number(luku2));
+    const vastaus = (Number(luku1) + Number(luku2));
+    setTulos(vastaus)
+    setHistoria([...historia, luku1 + " + " + luku2 + " = " + vastaus]);
   };
 
   const laskeErotus = () => {
-    setTulos(Number(luku1) - Number(luku2));
+    const vastaus = (Number(luku1) - Number(luku2));
+    setTulos(vastaus)
+    setHistoria([...historia, luku1 + " - " + luku2 + " = " + vastaus]);
   };
+
+ 
 
   return (
     <View style={styles.container}>
@@ -36,6 +45,13 @@ export default function App() {
         <Button title="+" onPress={laskeYhteen} />
         <Button title="-" onPress={laskeErotus} />
       </View>
+
+      <Text style={{ marginTop: 20 }}>History: </Text>
+
+       <FlatList
+        data={historia}
+        renderItem={({ item }) => <Text>{item}</Text>}
+      />
     </View>
   );
 }
